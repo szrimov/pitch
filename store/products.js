@@ -66,7 +66,7 @@ export const actions = {
   async addToFavorite ({ commit }, id) {
     commit('addToFavoriteStart')
     try {
-      await this.$axios.post('/commerce/products/favourites', { product: { id } })
+      await this.$axios.post('/commerce/products/favourites', { product: id })
       commit('addToFavoriteSuccess', id)
     } catch (error) {
       commit('addToFavoriteFailure', error)
