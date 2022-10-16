@@ -4,18 +4,17 @@
       <nuxt-link class="navbar-brand" to="/">
         Главная
       </nuxt-link>
-      <ul v-if="!Authorization" class="navbar-nav">
+      <ul v-if="!$auth.loggedIn" class="navbar-nav">
         <li class="nav-item">
           <nuxt-link active-class="active" class="nav-link" to="/login">
             Авторизация
           </nuxt-link>
         </li>
       </ul>
-      <ul v-if="Authorization" class="navbar-nav">
+      <ul v-else class="navbar-nav">
         <li class="nav-item">
           <nuxt-link
             exact
-            no-prefetch
             active-class="active"
             class="nav-link "
             aria-current="page"
@@ -41,24 +40,10 @@
 
 <script>
 
-import { mapGetters } from 'vuex'
-import { getItem } from '../helpers/localStoarageHelper'
-
 export default {
-  computed: {
-    ...mapGetters('login', ['Authorization'])
-  },
-  mounted () {
-    if (getItem('Authorization')) {
-      this.$store.commit('login/setAuthorization', getItem('Authorization'))
-    } else {
-      this.$router.push('/login')
-    }
-  },
   methods: {
     logout () {
-      this.$store.dispatch('login/logout')
-      this.$router.push('/login')
+      this.$auth.logout()
     }
   }
 }

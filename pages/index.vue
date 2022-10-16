@@ -7,11 +7,8 @@
 </template>
 
 <script>
-import { getItem } from '@/helpers/localStoarageHelper'
 export default {
-  name: 'IndexPage',
-  mounted () {
-    this.$store.commit('login/setAuthorization', getItem('Authorization'))
-  }
+  auth: false,
+  name: 'IndexPage'
 }
 </script>

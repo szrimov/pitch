@@ -1,5 +1,6 @@
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
+  // mode: 'universal',
   head: {
     title: 'pitch',
     htmlAttrs: {
@@ -33,10 +34,41 @@ export default {
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
-  modules: ['@nuxtjs/axios'],
-
+  modules: [
+    '@nuxtjs/axios',
+    '@nuxtjs/auth'
+  ],
   axios: {
     baseURL: 'https://dev.api.cloud-atlas.online'
+  },
+
+  auth: {
+    strategies: {
+      local: {
+        endpoints: {
+          login: {
+            url: '/auth/login',
+            method: 'post',
+            propertyName: 'data.Authorization'
+          },
+          user: {
+            url: '/auth/user',
+            method: 'get',
+            propertyName: false
+          },
+          logout: {
+            url: '/auth/logout',
+            method: 'post',
+            propertyName: false
+          }
+        },
+        tokenType: ''
+      }
+    }
+  },
+
+  router: {
+    middleware: ['auth']
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build

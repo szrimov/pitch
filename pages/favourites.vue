@@ -1,5 +1,5 @@
 <template>
-  <div v-if="token">
+  <div>
     <h2 class="text-center">
       Избранные товары
     </h2>
@@ -47,32 +47,16 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import { getItem } from '@/helpers/localStoarageHelper'
 
 export default {
-  data () {
-    return {
-      token: ''
-    }
-  },
   async fetch ({ store }) {
-    if (store.getters['favourites/favourites'].length === 0) {
-      await store.dispatch('favourites/getFavourites', {
-        limit: 50,
-        offset: 1
-      })
-    }
+    await store.dispatch('favourites/getFavourites', {
+      limit: 50,
+      offset: 1
+    })
   },
   computed: {
     ...mapGetters('favourites', ['favourites'])
-  },
-  mounted () {
-    this.token = getItem('Authorization')
-    if (this.token) {
-      this.$store.commit('login/setAuthorization', this.token)
-    } else {
-      this.$router.push('/login')
-    }
   },
   methods: {
     getFavourites (offset) {

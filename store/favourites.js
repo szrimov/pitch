@@ -57,7 +57,6 @@ export const actions = {
       commit('getFavouritesFailure', error)
     }
   },
-
   async addToFavorite ({ commit }, id) {
     commit('addToFavoriteStart')
     try {
@@ -67,7 +66,6 @@ export const actions = {
       commit('addToFavoriteFailure', error)
     }
   },
-
   async removeFromFavorite ({ commit }, id) {
     commit('addToFavoriteStart')
     try {

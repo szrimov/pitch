@@ -3,11 +3,6 @@
     <div class="container">
       <div class="row mt-5 login-form">
         <div class="col-md-4 col-lg-4 col-4 mx-auto">
-          <div class="text-center">
-            <div v-if="$route.query.message" class="alert alert-danger">
-              Нужно авторизоваться
-            </div>
-          </div>
           <form @submit.prevent="onSubmit">
             <div class="mb-3 mt-3">
               <input
@@ -49,10 +44,7 @@ export default {
   },
   methods: {
     onSubmit () {
-      this.$store.dispatch('login/login', { username: this.username, password: this.password })
-        .then(() => {
-          this.$router.push({ name: 'index' })
-        })
+      this.$auth.loginWith('local', { data: { username: this.username, password: this.password } })
     }
   }
 }
