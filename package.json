@@ -33,6 +33,7 @@
     "eslint-config-prettier": "^8.6.0",
     "eslint-plugin-nuxt": "^4.0.0",
     "eslint-plugin-vue": "^9.5.1",
+    "husky": "^8.0.3",
     "lint-staged": "^13.1.2",
     "prettier": "^2.8.4"
   },
@@ -42,7 +43,7 @@
     }
   },
   "lint-staged": {
-    "*.js" : [
+    "*.js": [
       "yarn lint-fix",
       "git add"
     ]
