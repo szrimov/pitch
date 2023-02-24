@@ -5,68 +5,70 @@ export const state = () => ({
 })
 
 export const mutations = {
-  getFavouritesStart (state) {
+  getFavouritesStart(state) {
     state.isLoading = true
   },
-  getFavouritesSuccess (state, payload) {
+  getFavouritesSuccess(state, payload) {
     state.isLoading = false
     state.favourites = payload
   },
-  getFavouritesFailure (state, error) {
+  getFavouritesFailure(state, error) {
     state.isLoading = false
     state.error = error
   },
 
-  addToFavoriteStart (state) {
+  addToFavoriteStart(state) {
     state.isLoading = true
   },
-  addToFavoriteSuccess (state, id) {
+  addToFavoriteSuccess(state, id) {
     state.isLoading = false
     state.favourites = state.favourites.filter(el => el.product.id !== id)
   },
-  addToFavoriteFailure (state, error) {
+  addToFavoriteFailure(state, error) {
     state.isLoading = false
     state.error = error
   },
 
-  removeFromFavoriteStart (state) {
+  removeFromFavoriteStart(state) {
     state.isLoading = true
   },
-  removeFromFavoriteSuccess (state, id) {
+  removeFromFavoriteSuccess(state, id) {
     state.isLoading = false
-    state.favourites = state.favourites.map((el) => {
+    state.favourites = state.favourites.map(el => {
       if (el.product.id === id) {
         el.product.isInFavourites = !el.product.isInFavourites
       }
       return el
     })
   },
-  removeFromFavoriteFailure (state, error) {
+  removeFromFavoriteFailure(state, error) {
     state.isLoading = false
     state.error = error
   }
 }
 
 export const actions = {
-  async getFavourites ({ commit }, { limit, offset }) {
+  async getFavourites({commit}, {limit, offset}) {
     commit('getFavouritesStart')
     try {
-      const { data } = await this.$axios.get(`/commerce/products/favourites?filters[limit]=${limit}&filters[offset]=${offset}`)
+      const {data} = await this.$axios.get(
+        `/commerce/products/favourites?filters[limit]=${limit}&filters[offset]=${offset}`
+      )
       commit('getFavouritesSuccess', data.data.productsFavourites)
     } catch (error) {
       commit('getFavouritesFailure', error)
     }
   },
-  async addToFavorite ({ commit }, id) {
+  async addToFavorite({commit}, id) {
     commit('addToFavoriteStart')
     try {
-      await this.$axios.post('/commerce/products/favourites', { product: id })
+      await this.$axios.post('/commerce/products/favourites', {product: id})
       commit('addToFavoriteSuccess', id)
     } catch (error) {
       commit('addToFavoriteFailure', error)
     }
   },
-  async removeFromFavorite ({ commit }, id) {
+  async removeFromFavorite({commit}, id) {
     commit('addToFavoriteStart')
     try {
       await this.$axios.delete(`/commerce/products/${id}/favourites`)
@@ -78,7 +80,7 @@ export const actions = {
 }
 
 export const getters = {
-  favourites (state) {
+  favourites(state) {
     return state.favourites
   }
 }
