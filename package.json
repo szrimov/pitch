@@ -8,7 +8,7 @@
     "start": "nuxt start",
     "generate": "nuxt generate",
     "lint": "prettier --write **/*.vue **/*.js && eslint --ext .js,.vue .",
-    "lint-fix": "prettier --write **/*.vue **/*.js && eslint --fix --ext .js,.vue .",
+    "lint-fix": "prettier --write **/*.vue **/*.js && eslint --fix --color --ext .js,.vue .",
     "deploy": "push-dir --dir=dist --branch=gh-pages --cleanup"
   },
   "dependencies": {
@@ -35,5 +35,16 @@
     "eslint-plugin-vue": "^9.5.1",
     "lint-staged": "^13.1.2",
     "prettier": "^2.8.4"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.js" : [
+      "yarn lint-fix",
+      "git add"
+    ]
   }
 }
