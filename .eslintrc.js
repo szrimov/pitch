@@ -75,10 +75,10 @@ module.exports = {
         functions: 'never'
       }
     ],
-     // обеспечивает максимальную длину строки
+    // обеспечивает максимальную длину строки
     'max-len': ['error', {code: 120}],
     // обеспечить согласованное использование расширения файла в пути импорта
-    'import/extensions': 'off', 
+    'import/extensions': 'off',
     // ESLint предпочитает экспорт по умолчанию
     'import/prefer-default-export': 'off',
     // разрешшенный импорт файла
@@ -96,11 +96,11 @@ module.exports = {
     // 'vue/name-property-casing': ['error', 'kebab-case'],
     'no-console': ['warn', {allow: ['warn', 'error']}],
     // ? default в пропсах - включено
-    // 'vue/require-default-prop': 'off', 
+    // 'vue/require-default-prop': 'off',
     // ? порядок св-в/методов в компоненте - включено
     // 'vue/order-in-components': 'off',
     // скобки в стрелочной функции
-    'arrow-parens': ['warn', 'as-needed'], 
+    'arrow-parens': ['warn', 'as-needed'],
     'import/order': 'off',
     'no-mixed-operators': 'off'
   }

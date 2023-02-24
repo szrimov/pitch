@@ -1,9 +1,9 @@
 <template>
   <nav class="navbar navbar-dark bg-primary navbar-expand-lg">
-    <div class="container d-flex justify-content-between align-items-center w-100">
-      <nuxt-link class="navbar-brand" to="/">
-        Главная
-      </nuxt-link>
+    <div
+      class="container d-flex justify-content-between align-items-center w-100"
+    >
+      <nuxt-link class="navbar-brand" to="/"> Главная </nuxt-link>
       <ul v-if="!$auth.loggedIn" class="navbar-nav">
         <li class="nav-item">
           <nuxt-link active-class="active" class="nav-link" to="/login">
@@ -16,7 +16,7 @@
           <nuxt-link
             exact
             active-class="active"
-            class="nav-link "
+            class="nav-link"
             aria-current="page"
             to="/catalog"
           >
@@ -29,7 +29,12 @@
           </nuxt-link>
         </li>
         <li class="nav-item">
-          <a active-class="active" class="nav-link" :style="{cursor: 'pointer'}" @click="logout">
+          <a
+            active-class="active"
+            class="nav-link"
+            :style="{cursor: 'pointer'}"
+            @click="logout"
+          >
             Выйти
           </a>
         </li>
@@ -39,15 +44,13 @@
 </template>
 
 <script>
-
 export default {
   methods: {
-    logout () {
+    logout() {
       this.$auth.logout()
     }
   }
 }
-
 </script>
 
 <style lang="scss"></style>
