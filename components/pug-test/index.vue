@@ -16,7 +16,7 @@ h1(
 export default {
   name: 'pug-test-component',
   methods: {
-    hello() {
+    hello(df) {
       return 'hello'
     }
   }
