@@ -8,8 +8,7 @@ h1(
   data='helloC',
   @click='hello'
 ) hello
-  .test 
-    |
+  .test
     span test2
 </template>
 
