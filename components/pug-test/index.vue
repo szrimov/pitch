@@ -10,7 +10,7 @@ h1(
 ) hello
   .test 
     |
-    h3 test2
+    span test2
 </template>
 
 <script>
