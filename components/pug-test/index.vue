@@ -8,6 +8,9 @@ h1(
   data='helloC',
   @click='hello'
 ) hello
+  .test 
+    |
+    h3 test2
 </template>
 
 <script>
