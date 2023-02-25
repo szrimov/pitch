@@ -5,73 +5,77 @@ export const state = () => ({
 })
 
 export const mutations = {
-  getProductsStart (state) {
-    state.isLoading = true
+  getProductsStart(ctx) {
+    ctx.isLoading = true
   },
-  getProductsSuccess (state, payload) {
-    state.isLoading = false
-    state.products = payload
+  getProductsSuccess(ctx, payload) {
+    ctx.isLoading = false
+    ctx.products = payload
   },
-  getProductsFailure (state, error) {
-    state.isLoading = false
-    state.error = error
+  getProductsFailure(ctx, error) {
+    ctx.isLoading = false
+    ctx.error = error
   },
 
-  addToFavoriteStart (state) {
-    state.isLoading = true
+  addToFavoriteStart(ctx) {
+    ctx.isLoading = true
   },
-  addToFavoriteSuccess (state, id) {
-    state.isLoading = false
-    state.products = state.products.map((el) => {
+  addToFavoriteSuccess(ctx, id) {
+    ctx.isLoading = false
+    ctx.products = ctx.products.map(el => {
+      const item = el
       if (el.id === id) {
-        el.isInFavourites = !el.isInFavourites
+        item.isInFavourites = !el.isInFavourites
       }
-      return el
+      return item
     })
   },
-  addToFavoriteFailure (state, error) {
-    state.isLoading = false
-    state.error = error
+  addToFavoriteFailure(ctx, error) {
+    ctx.isLoading = false
+    ctx.error = error
   },
 
-  removeFromFavoriteStart (state) {
-    state.isLoading = true
+  removeFromFavoriteStart(ctx) {
+    ctx.isLoading = true
   },
-  removeFromFavoriteSuccess (state, id) {
-    state.isLoading = false
-    state.products = state.products.map((el) => {
+  removeFromFavoriteSuccess(ctx, id) {
+    ctx.isLoading = false
+    ctx.products = ctx.products.map(el => {
+      const item = el
       if (el.product.id === id) {
-        el.product.isInFavourites = !el.product.isInFavourites
+        item.product.isInFavourites = !el.product.isInFavourites
       }
-      return el
+      return item
     })
   },
-  removeFromFavoriteFailure (state, error) {
-    state.isLoading = false
-    state.error = error
+  removeFromFavoriteFailure(ctx, error) {
+    ctx.isLoading = false
+    ctx.error = error
   }
 }
 
 export const actions = {
-  async getProducts ({ commit }, { limit, offset }) {
+  async getProducts({commit}, {limit, offset}) {
     commit('getProductsStart')
     try {
-      const { data } = await this.$axios.get(`/commerce/products?filters[limit]=${limit}&filters[offset]=${offset}`)
+      const {data} = await this.$axios.get(
+        `/commerce/products?filters[limit]=${limit}&filters[offset]=${offset}`
+      )
       commit('getProductsSuccess', data.data.products)
     } catch (error) {
       commit('getProductsFailure', error)
     }
   },
-  async addToFavorite ({ commit }, id) {
+  async addToFavorite({commit}, id) {
     commit('addToFavoriteStart')
     try {
-      await this.$axios.post('/commerce/products/favourites', { product: id })
+      await this.$axios.post('/commerce/products/favourites', {product: id})
       commit('addToFavoriteSuccess', id)
     } catch (error) {
       commit('addToFavoriteFailure', error)
     }
   },
-  async removeFromFavorite ({ commit }, id) {
+  async removeFromFavorite({commit}, id) {
     commit('addToFavoriteStart')
     try {
       await this.$axios.delete(`/commerce/products/${id}/favourites`)
@@ -83,7 +87,7 @@ export const actions = {
 }
 
 export const getters = {
-  products (state) {
-    return state.products
+  products(ctx) {
+    return ctx.products
   }
 }
