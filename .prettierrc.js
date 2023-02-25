@@ -8,6 +8,7 @@ module.exports = {
     {
       files: '*.vue',
       options: {
+        pugSingleQuote: false,
         bracketSpacing: true,
         bracketSameLine: true,
         pugAttributeSeparator: 'none',

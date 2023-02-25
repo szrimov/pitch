@@ -1,25 +1,25 @@
 <template lang="pug">
   h1(
-    data='2'
-    data='2'
-    data='2'
-    data='2'
-    data='2'
-    data='helloC'
-    dataA='hello'
-    value='2'
-    :class='{ hello: true }'
-    @click='hello') hello
+    data="2"
+    data="2"
+    data="2"
+    data="2"
+    data="2"
+    data="helloC"
+    dataA="hello"
+    value="2"
+    :class="{ hello: true }"
+    @click="hello") hello
     .test(
-      value='2'
-      data='2'
-      data='2'
-      data='2'
-      data='helloC'
-      dataA='hello'
-      dataB='hello'
-      value='2'
-      :class='{ hello: true }')
+      value="2"
+      data="2"
+      data="2"
+      data="2"
+      data="helloC"
+      dataA="hello"
+      dataB="hello"
+      value="2"
+      :class="{ hello: true }")
       .test test
 </template>
 
